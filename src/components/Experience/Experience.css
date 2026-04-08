@@ -1,0 +1,125 @@
+.experience {
+  background: var(--bg-primary);
+  border-top: 3px solid var(--wood-dark);
+  border-bottom: 3px solid var(--wood-dark);
+}
+
+.experience__header { margin-bottom: 3rem; }
+
+.experience__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.exp-card {
+  background: var(--bg-secondary);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border: 3px solid var(--wood-dark);
+  box-shadow: 5px 5px 0 0 var(--wood-dark), inset 0 0 0 1px var(--wood-pale);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.exp-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--exp-color, var(--emerald));
+}
+
+.exp-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 5px 8px 0 0 var(--wood-dark), inset 0 0 0 1px var(--wood-pale);
+}
+
+.exp-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.exp-card__period {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.exp-card__role {
+  font-family: var(--font-pixel);
+  font-size: 0.55rem;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+
+.exp-card__company {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.exp-card__bullets {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.exp-card__bullet {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.exp-card__bullet::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--exp-color, var(--emerald));
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Certifications */
+.experience__certs {
+  background: var(--bg-secondary);
+  padding: 1.5rem 2rem;
+  border: 3px solid var(--wood-dark);
+  box-shadow: 5px 5px 0 0 var(--wood-dark), inset 0 0 0 1px var(--wood-pale);
+}
+
+.experience__cert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.experience__cert-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.experience__cert-icon { font-size: 0.6rem; flex-shrink: 0; }
+
+.experience__cert-text {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 700px) {
+  .experience__grid { grid-template-columns: 1fr; }
+}
