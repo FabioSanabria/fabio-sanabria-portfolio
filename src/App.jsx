@@ -1,4 +1,5 @@
 import './App.css'
+import { ThemeProvider } from './context/ThemeContext'
 import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
 import About from './components/About/About'
@@ -9,7 +10,7 @@ import Contact from './components/Contact/Contact'
 
 function App() {
   return (
-    <>
+    <ThemeProvider>
       <Navbar />
       <main>
         <Hero />
@@ -19,7 +20,7 @@ function App() {
         <Projects />
         <Contact />
       </main>
-    </>
+    </ThemeProvider>
   )
 }
 

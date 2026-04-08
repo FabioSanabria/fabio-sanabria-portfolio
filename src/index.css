@@ -305,6 +305,71 @@ ul { list-style: none; }
   100% { background-position:  200% center; }
 }
 
+/* ============================================================
+   TIME-OF-DAY THEMES
+   ============================================================ */
+
+[data-theme="morning"] {
+  --sky:       #ffd4a0;
+  --sky-light: #ffe8c8;
+}
+
+[data-theme="evening"] {
+  --bg-primary:   #7a5238;
+  --bg-secondary: #6a4228;
+  --bg-tertiary:  #5a3418;
+  --border:       #a07040;
+  --border-muted: #805028;
+  --text-primary:   #f5ead8;
+  --text-secondary: #e0c8a8;
+  --text-muted:     #c8a878;
+  --wood-dark:   #f0d8b0;
+  --wood-mid:    #e0c090;
+  --wood-light:  #d0a870;
+  --wood-pale:   #3d2010;
+  --topaz:       #f0c060;
+  --sky:         #c04818;
+  --sky-light:   #e07040;
+  --grass-dark:  #2a5020;
+  --grass-mid:   #3a6830;
+  --grass-light: #4a8040;
+}
+
+[data-theme="night"] {
+  color-scheme: dark;
+  --bg-primary:    #1a1828;
+  --bg-secondary:  #14121f;
+  --bg-tertiary:   #201e30;
+  --border:        #4a3d6a;
+  --border-muted:  #352d50;
+  --text-primary:  #ede8d8;
+  --text-secondary:#c8b898;
+  --text-muted:    #8a7868;
+  --wood-pale:     #2e2840;
+  --topaz-dim:     #2f2510;
+  --amethyst-dim:  #241a38;
+  --emerald-dim:   #152a1e;
+  --sapphire-dim:  #152038;
+  --ruby-dim:      #2a1515;
+  --sky:           #0d0b1e;
+  --sky-light:     #1a1838;
+  --grass-dark:    #1a3018;
+  --grass-mid:     #253820;
+  --grass-light:   #2e4828;
+}
+
+[data-theme="evening"] .navbar--scrolled {
+  background: rgba(122, 82, 56, 0.78);
+  border-bottom-color: #a07040;
+  box-shadow: 0 4px 0 0 #a07040;
+}
+
+[data-theme="night"] .navbar--scrolled {
+  background: rgba(20, 18, 31, 0.78);
+  border-bottom-color: #4a3d6a;
+  box-shadow: 0 4px 0 0 #4a3d6a;
+}
+
 @keyframes spin-once {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
@@ -313,6 +378,14 @@ ul { list-style: none; }
 @keyframes sun-pulse {
   0%, 100% { box-shadow: 0 0 20px 4px rgba(240,192,64,0.4); }
   50%       { box-shadow: 0 0 35px 10px rgba(240,192,64,0.6); }
+}
+
+@keyframes bird-fly {
+  0%   { transform: translateX(-60px) translateY(0px);  }
+  25%  { transform: translateX(25vw)  translateY(-20px); }
+  50%  { transform: translateX(50vw)  translateY(5px);  }
+  75%  { transform: translateX(75vw)  translateY(-10px); }
+  100% { transform: translateX(110vw) translateY(0px);  }
 }
 
 @keyframes walk {

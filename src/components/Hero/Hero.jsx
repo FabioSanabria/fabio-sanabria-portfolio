@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "../../context/ThemeContext";
 import fabioImg    from "../../assets/character/fabio.png";
 import keyboardImg from "../../assets/items/keyboard.png";
 import "./Hero.css";
@@ -113,28 +114,92 @@ const FIREFLIES = [
   },
 ];
 
-export default function Hero() {
-  return (
-    <section className="hero section" id="home">
-      {/* ── Background landscape layers ── */}
-      <div className="hero__sky" aria-hidden="true">
-        <div className="hero__sun" />
-      </div>
+const STARS = Array.from({ length: 40 }, (_, i) => ({
+  left:  `${(i * 37 + 11) % 97}%`,
+  top:   `${(i * 53 + 7)  % 75}%`,
+  size:  i % 3 === 0 ? 3 : i % 3 === 1 ? 2 : 1.5,
+  delay: `${(i * 0.3) % 3}s`,
+  dur:   `${2 + (i % 4) * 0.5}s`,
+}))
 
-      <div className="hero__clouds" aria-hidden="true">
-        <div className="hero__cloud hero__cloud--1" />
-        <div className="hero__cloud hero__cloud--2" />
-        <div className="hero__cloud hero__cloud--3" />
-      </div>
+const BIRDS = [
+  { style: { left: '10%', top: '18%', animationDuration: '8s',  animationDelay: '0s'   } },
+  { style: { left: '25%', top: '12%', animationDuration: '11s', animationDelay: '2s'   } },
+  { style: { left: '55%', top: '20%', animationDuration: '9s',  animationDelay: '4s'   } },
+  { style: { left: '75%', top: '14%', animationDuration: '13s', animationDelay: '1s'   } },
+  { style: { left: '85%', top: '22%', animationDuration: '10s', animationDelay: '3.5s' } },
+]
+
+export default function Hero() {
+  const { theme } = useTheme()
+
+  const isNight   = theme === 'night'
+  const isMorning = theme === 'morning'
+  const isEvening = theme === 'evening'
+
+  return (
+    <section className={`hero section hero--${theme}`} id="home">
+      {/* ── Sky ── */}
+      <AnimatePresence mode="sync">
+        <motion.div
+          key={theme}
+          className={`hero__sky hero__sky--${theme}`}
+          aria-hidden="true"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.75, ease: 'easeInOut' }}
+        >
+          <div className={isNight ? "hero__moon" : "hero__sun"} />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* ── Stars (night only) ── */}
+      {isNight && (
+        <div className="hero__stars" aria-hidden="true">
+          {STARS.map((s, i) => (
+            <div
+              key={i}
+              className="hero__star"
+              style={{
+                left: s.left, top: s.top,
+                width: s.size, height: s.size,
+                animationDelay: s.delay,
+                animationDuration: s.dur,
+              }}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* ── Birds (morning only) ── */}
+      {isMorning && (
+        <div className="hero__birds" aria-hidden="true">
+          {BIRDS.map((b, i) => (
+            <div key={i} className="hero__bird" style={b.style} />
+          ))}
+        </div>
+      )}
+
+      {/* ── Clouds (afternoon + evening) ── */}
+      {!isMorning && !isNight && (
+        <div className={`hero__clouds${isEvening ? ' hero__clouds--evening' : ''}`} aria-hidden="true">
+          <div className="hero__cloud hero__cloud--1" />
+          <div className="hero__cloud hero__cloud--2" />
+          <div className="hero__cloud hero__cloud--3" />
+        </div>
+      )}
 
       <div className="hero__hills" aria-hidden="true" />
 
-      {/* Fireflies */}
-      <div className="hero__fireflies" aria-hidden="true">
-        {FIREFLIES.map((f, i) => (
-          <div key={i} className="hero__firefly" style={f.style} />
-        ))}
-      </div>
+      {/* ── Fireflies (evening + night only) ── */}
+      {(isNight || isEvening) && (
+        <div className="hero__fireflies" aria-hidden="true">
+          {FIREFLIES.map((f, i) => (
+            <div key={i} className="hero__firefly" style={f.style} />
+          ))}
+        </div>
+      )}
 
       {/* ── Main content ── */}
       <div className="container hero__inner">
