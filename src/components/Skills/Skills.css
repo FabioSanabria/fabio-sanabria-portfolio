@@ -1,0 +1,116 @@
+.skills {
+  background: var(--bg-primary);
+  border-top: 3px solid var(--wood-dark);
+}
+
+.skills__header { margin-bottom: 3rem; }
+
+.skills__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* Category card */
+.skills__category {
+  background: var(--bg-secondary);
+  padding: 1.5rem;
+  border: 3px solid var(--wood-dark);
+  box-shadow: 5px 5px 0 0 var(--wood-dark), inset 0 0 0 1px var(--wood-pale);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.skills__category:hover {
+  transform: translateY(-3px);
+  box-shadow: 5px 8px 0 0 var(--wood-dark), inset 0 0 0 1px var(--wood-pale);
+}
+
+.skills__cat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--border-muted);
+}
+
+.skills__cat-icon { font-size: 1rem; }
+
+.skills__cat-title {
+  font-family: var(--font-pixel);
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
+}
+
+/* Skill bars */
+.skills__bars {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.skill-bar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.35rem;
+}
+
+.skill-bar__name {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.skill-bar__level {
+  font-family: var(--font-pixel);
+  font-size: 0.4rem;
+  letter-spacing: 0.04em;
+}
+
+.skill-bar__track {
+  position: relative;
+  height: 10px;
+  background: var(--bg-tertiary);
+  border: 2px solid var(--wood-dark);
+  overflow: visible;
+}
+
+.skill-bar__fill {
+  height: 100%;
+  position: relative;
+}
+
+.skill-bar__fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to right,
+    transparent 0px,
+    transparent 7px,
+    rgba(0,0,0,0.12) 7px,
+    rgba(0,0,0,0.12) 9px
+  );
+}
+
+.skill-bar__notches {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.skill-bar__notch {
+  position: absolute;
+  top: -3px; bottom: -3px;
+  width: 2px;
+  background: var(--bg-primary);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  .skills__grid { grid-template-columns: 1fr; }
+}
+@media (min-width: 901px) and (max-width: 1100px) {
+  .skills__grid { grid-template-columns: repeat(2, 1fr); }
+}
