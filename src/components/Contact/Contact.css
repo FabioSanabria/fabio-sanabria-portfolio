@@ -202,6 +202,22 @@
 
 .contact__footer-pixel { color: var(--emerald); }
 
+[data-theme="evening"] .contact__footer {
+  background: #1a1208;
+  border-top-color: #6a3820;
+}
+[data-theme="evening"] .contact__footer-text {
+  color: #d0b898;
+}
+
+[data-theme="night"] .contact__footer {
+  background: #14121f;
+  border-top-color: #4a3d6a;
+}
+[data-theme="night"] .contact__footer-text {
+  color: #c8b898;
+}
+
 @media (max-width: 900px) {
   .contact__layout { grid-template-columns: 1fr; }
   .contact__info { flex-direction: row; flex-wrap: wrap; }

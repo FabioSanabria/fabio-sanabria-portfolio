@@ -16,14 +16,20 @@
 .hero__sky {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    #7ec8e3 0%,
-    #b8e0f5 40%,
-    #ddf0fa 65%,
-    #f5f0dc 100%
-  );
+  background: linear-gradient(to bottom, #7ec8e3 0%, #b8e0f5 40%, #ddf0fa 65%, #f5f0dc 100%);
   z-index: 0;
+}
+
+.hero__sky--morning {
+  background: linear-gradient(to bottom, #ffb060 0%, #ffd090 30%, #ffe8b8 65%, #fff4dc 100%);
+}
+
+.hero__sky--evening {
+  background: linear-gradient(to bottom, #5a2060 0%, #c05030 30%, #e08040 60%, #f0b070 85%, #f5d0a0 100%);
+}
+
+.hero__sky--night {
+  background: linear-gradient(to bottom, #0a0818 0%, #141230 40%, #1e1a40 70%, #28244a 100%);
 }
 
 /* Sun */
@@ -38,6 +44,90 @@
   border: 4px solid var(--gold-dark);
   image-rendering: pixelated;
   animation: sun-pulse 4s ease-in-out infinite;
+  transition: background 0.6s, border-color 0.6s;
+}
+
+/* Morning: pinkish sun */
+.hero__sky--morning .hero__sun {
+  background: #ffb060;
+  border-color: #e07030;
+  box-shadow: 0 0 30px 8px rgba(255,160,80,0.5);
+}
+
+/* Evening: deep orange sun */
+.hero__sky--evening .hero__sun {
+  background: #ff6020;
+  border-color: #c03010;
+  box-shadow: 0 0 40px 12px rgba(255,80,20,0.5);
+}
+
+/* Moon */
+.hero__moon {
+  position: absolute;
+  top: 14%;
+  right: 14%;
+  width: 64px;
+  height: 64px;
+  background: #e8e0c8;
+  border-radius: 50%;
+  border: 4px solid #a09070;
+  box-shadow: 0 0 20px 6px rgba(220,210,180,0.4), inset -10px -4px 0 0 #c8b890;
+  animation: sun-pulse 6s ease-in-out infinite;
+}
+
+/* ── Stars ── */
+.hero__stars {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero__star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle var(--dur, 2s) ease-in-out var(--delay, 0s) infinite;
+  box-shadow: 0 0 3px 1px rgba(255,255,255,0.6);
+}
+
+/* ── Birds ── */
+.hero__birds {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero__bird {
+  position: absolute;
+  width: 12px;
+  height: 4px;
+  border-top: 3px solid #4a3420;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-radius: 50% 50% 0 0;
+  animation: bird-fly var(--animationDuration, 9s) ease-in-out var(--animationDelay, 0s) infinite;
+}
+.hero__bird::after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: -3px;
+  width: 10px;
+  height: 4px;
+  border-top: 3px solid #4a3420;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-radius: 50% 50% 0 0;
+}
+
+/* Evening cloud tint */
+.hero__clouds--evening .hero__cloud,
+.hero__clouds--evening .hero__cloud::before,
+.hero__clouds--evening .hero__cloud::after {
+  background: #e86030;
+  opacity: 0.7;
 }
 
 /* ── Clouds ── */
@@ -217,6 +307,12 @@
   margin-bottom: 1.25rem;
   color: var(--wood-dark);
 }
+.hero--night .hero__greeting {
+  color: #ddd8f0;
+}
+.hero--evening .hero__greeting {
+  color: #fff5e8;
+}
 
 .hero__name {
   font-family: var(--font-body);
@@ -258,6 +354,16 @@
   background: rgba(255, 255, 255, 0.45);
   padding: 0.8rem 1rem;
   border-left: 3px solid var(--wood-mid);
+}
+.hero--evening .hero__bio {
+  background: rgba(20, 10, 4, 0.55);
+  border-left-color: #a07040;
+  color: #e0c8a8;
+}
+.hero--night .hero__bio {
+  background: rgba(10, 8, 24, 0.7);
+  border-left-color: #4a3d6a;
+  color: #c8b898;
 }
 
 .hero__ctas {
@@ -304,6 +410,10 @@
   gap: 0.5rem;
   width: 100%;
   justify-content: center;
+}
+.hero--evening .hero__sprite-nameplate {
+  color: #3d1a08;
+  border-color: #3d1a08;
 }
 
 .hero__sprite-img {

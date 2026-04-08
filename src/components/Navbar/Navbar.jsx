@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useTheme, THEME_INFO } from '../../context/ThemeContext'
 import './Navbar.css'
 
 const NAV_LINKS = [
@@ -9,22 +10,15 @@ const NAV_LINKS = [
   { label: 'CONTACT',    href: '#contact',    icon: '✉️'  },
 ]
 
-function getTimeOfDay() {
-  const h = new Date().getHours()
-  if (h >= 5  && h < 8)  return { emoji: '🌅', label: 'MORNING'   }
-  if (h >= 8  && h < 12) return { emoji: '☀️', label: 'DAY'       }
-  if (h >= 12 && h < 17) return { emoji: '🌤️', label: 'AFTERNOON' }
-  if (h >= 17 && h < 20) return { emoji: '🌇', label: 'EVENING'   }
-  return                         { emoji: '🌙', label: 'NIGHT'     }
-}
-
 export default function Navbar() {
+  const { theme, cycleTheme } = useTheme()
+  const time = THEME_INFO[theme]
+
   const [scrolled,  setScrolled]  = useState(false)
   const [menuOpen,  setMenuOpen]  = useState(false)
   const [active,    setActive]    = useState('')
   const [hovered,   setHovered]   = useState(null)
   const [sparkling, setSparkling] = useState(null)
-  const [time,      setTime]      = useState(getTimeOfDay)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -36,11 +30,6 @@ export default function Navbar() {
     const onResize = () => { if (window.innerWidth > 768) setMenuOpen(false) }
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
-  }, [])
-
-  useEffect(() => {
-    const id = setInterval(() => setTime(getTimeOfDay()), 60_000)
-    return () => clearInterval(id)
   }, [])
 
   const handleNavClick = (href, label) => {
@@ -55,15 +44,14 @@ export default function Navbar() {
       <div className="navbar__inner">
 
         <a href="#" className="navbar__logo" onClick={() => setActive('')}>
-          <span className="navbar__logo-bracket">⟨</span>
-          FABIO
-          <span className="navbar__logo-bracket">/⟩</span>
+          <span className="navbar__logo-star">✦</span>
+          <span className="navbar__logo-text">FASV</span>
         </a>
 
-        <div className="navbar__time-badge">
+        <button className="navbar__time-badge" onClick={cycleTheme} title="Change time of day">
           <span>{time.emoji}</span>
           <span className="navbar__time-label">{time.label}</span>
-        </div>
+        </button>
 
         <ul className="navbar__links">
           {NAV_LINKS.map(({ label, href, icon }) => {
@@ -86,7 +74,7 @@ export default function Navbar() {
                   >
                     {icon}
                   </span>
-                  {label}
+                  <span className="navbar__link-text">{label}</span>
                   {isSparkling && (
                     <span className="navbar__sparkle" aria-hidden="true">✦</span>
                   )}
