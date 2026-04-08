@@ -39,27 +39,107 @@
   letter-spacing: 0.06em;
 }
 
-/* Portrait */
-.about__sheet-avatar {
+/* ---- Character Selector ---- */
+.about__char-select {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.about__char-arrow {
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  background: var(--wood-pale);
+  border: 2px solid var(--wood-dark);
+  box-shadow: 0 3px 0 0 var(--wood-dark);
+  color: var(--wood-dark);
+  cursor: pointer;
+  padding: 0.45em 0.6em;
+  border-radius: 3px;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  flex-shrink: 0;
+}
+.about__char-arrow:hover {
+  background: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 0 var(--wood-dark);
+}
+.about__char-arrow:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.about__char-stage {
+  flex: 1;
+  overflow: hidden;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about__char-slide {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
+  width: 100%;
 }
 
+/* Portrait frame */
 .about__avatar-grid {
   background: var(--sky-light);
   border: 3px solid var(--wood-dark);
   box-shadow: 3px 3px 0 0 var(--wood-dark);
   padding: 0.5rem;
   display: inline-flex;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .about__avatar-img {
-  width: 110px;
+  width: 100px;
   height: auto;
   image-rendering: pixelated;
   display: block;
+}
+
+.about__char-label {
+  font-family: var(--font-pixel);
+  font-size: 0.45rem;
+  letter-spacing: 0.08em;
+}
+
+.about__char-class {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Dot indicators */
+.about__char-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.about__char-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 0;
+  background: var(--border);
+  border: 2px solid var(--wood-mid);
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+.about__char-dot:hover {
+  background: var(--wood-light);
+  transform: scale(1.2);
+}
+.about__char-dot--active {
+  background: var(--gold);
+  border-color: var(--wood-dark);
+  transform: scale(1.25);
 }
 
 /* HP/MP bars */
