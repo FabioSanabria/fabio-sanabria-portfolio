@@ -4,6 +4,8 @@ import { useTheme } from "../../context/ThemeContext";
 import fabioImg from "../../assets/character/fabio.png";
 import keyboardImg from "../../assets/items/keyboard.png";
 import petImg from "../../assets/items/pet.png";
+import backgroundImg from "../../assets/background.png";
+import cowImg from "../../assets/cow.png";
 import "./Hero.css";
 
 const ROLES = [
@@ -294,8 +296,6 @@ export default function Hero() {
         </div>
       )}
 
-      <div className="hero__hills" aria-hidden="true" />
-
       {/* ── Fireflies (evening + night only) ── */}
       {(isNight || isEvening) && (
         <div className="hero__fireflies" aria-hidden="true">
@@ -385,12 +385,13 @@ export default function Hero() {
         <div className="hero__ground-inner" />
       </div>
 
-      {/* PLACEHOLDER: background scene painting — replace with landscape pixel art */}
+      {/* ── Background hills ── */}
       <div
-        className="hero__placeholder hero__placeholder--bg"
-        aria-label="Placeholder: background landscape art"
+        className="hero__bg-hills"
+        aria-hidden="true"
+        style={{ backgroundImage: `url(${backgroundImg})` }}
       >
-        <span className="hero__placeholder-label">🖼 BACKGROUND ART</span>
+        <img src={cowImg} alt="Pixel art cow" className="hero__bg-cow" />
       </div>
 
       {/* Scroll indicator */}

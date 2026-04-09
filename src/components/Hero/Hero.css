@@ -16,20 +16,45 @@
 .hero__sky {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, #7ec8e3 0%, #b8e0f5 40%, #ddf0fa 65%, #f5f0dc 100%);
+  background: linear-gradient(
+    to bottom,
+    #7ec8e3 0%,
+    #b8e0f5 40%,
+    #ddf0fa 65%,
+    #f5f0dc 100%
+  );
   z-index: 0;
 }
 
 .hero__sky--morning {
-  background: linear-gradient(to bottom, #ffb060 0%, #ffd090 30%, #ffe8b8 65%, #fff4dc 100%);
+  background: linear-gradient(
+    to bottom,
+    #ffb060 0%,
+    #ffd090 30%,
+    #ffe8b8 65%,
+    #fff4dc 100%
+  );
 }
 
 .hero__sky--evening {
-  background: linear-gradient(to bottom, #5a2060 0%, #c05030 30%, #e08040 60%, #f0b070 85%, #f5d0a0 100%);
+  background: linear-gradient(
+    to bottom,
+    #5a2060 0%,
+    #c05030 30%,
+    #e08040 60%,
+    #f0b070 85%,
+    #f5d0a0 100%
+  );
 }
 
 .hero__sky--night {
-  background: linear-gradient(to bottom, #0a0818 0%, #141230 40%, #1e1a40 70%, #28244a 100%);
+  background: linear-gradient(
+    to bottom,
+    #0a0818 0%,
+    #141230 40%,
+    #1e1a40 70%,
+    #28244a 100%
+  );
 }
 
 /* Sun / Moon */
@@ -136,7 +161,6 @@
   animation: cloud-drift 50s linear 3s infinite;
   opacity: 0.75;
 }
-
 
 /* ── Hill silhouettes ── */
 .hero__hills {
@@ -373,20 +397,33 @@
   filter: drop-shadow(0 6px 4px rgba(0, 0, 0, 0.35));
 }
 
-/* Full-width bg placeholder — sits behind hills, only shows if no bg art added */
-.hero__placeholder--bg {
+/* ── Background hills ── */
+.hero__bg-hills {
   position: absolute;
   bottom: 16%;
   left: 0;
   right: 0;
   height: 20%;
-  z-index: 1;
-  border-radius: 0;
-  border: none;
-  border-top: 3px dashed var(--wood-mid);
-  border-bottom: 3px dashed var(--wood-mid);
-  background: rgba(255, 255, 255, 0.12);
+  z-index: 2;
   pointer-events: none;
+  background-repeat: repeat-x;
+  background-position: bottom left;
+  background-size: auto 100%;
+  image-rendering: pixelated;
+}
+
+.hero--night .hero__bg-hills {
+  filter: brightness(0.4);
+}
+
+.hero__bg-cow {
+  position: absolute;
+  bottom: 60%;
+  left: 60%;
+  height: 50px;
+  width: auto;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.3));
 }
 
 .hero__placeholder-label {
