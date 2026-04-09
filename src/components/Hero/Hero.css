@@ -189,9 +189,9 @@
   position: absolute;
   width: 6px;
   height: 6px;
-  border-radius: 50%;
+  border-radius: 0;
   background: #ffe066;
-  box-shadow: 0 0 6px 3px rgba(255, 224, 40, 0.7);
+  box-shadow: 0 0 4px 2px rgba(255, 224, 40, 0.7);
   animation: firefly var(--animationDuration, 5s) ease-in-out
     var(--animationDelay, 0s) infinite;
   animation-duration: inherit;
