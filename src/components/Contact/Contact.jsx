@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import backgroundImg from "../../assets/background.png";
+import cowImg from "../../assets/cow.png";
 import "./Contact.css";
 
 const SOCIAL_LINKS = [
@@ -212,6 +214,13 @@ export default function Contact() {
           by Michelle Fonseca & Fabio Sanabria{" "}
           <span className="contact__footer-pixel">◆</span>
         </p>
+        <div
+          className="contact__footer-hills"
+          style={{ backgroundImage: `url(${backgroundImg})` }}
+        >
+          <img src={cowImg} alt="" className="contact__footer-cow contact__footer-cow--left" />
+          <img src={cowImg} alt="" className="contact__footer-cow contact__footer-cow--right" />
+        </div>
       </div>
     </section>
   );
