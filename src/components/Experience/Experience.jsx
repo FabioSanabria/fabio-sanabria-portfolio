@@ -37,9 +37,18 @@ const JOBS = [
 ]
 
 const CERTS = [
-  'Oracle Cloud Infrastructure 2025 Certified Architect Associate',
-  'Oracle Cloud Infrastructure 2025 Certified Foundations Associate',
-  'Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate',
+  {
+    label: 'Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate',
+    url: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=09051CE0A2CC5D54B06974C74939DDB50AB2826DBF3E0E21E1F6C50075640C80',
+  },
+  {
+    label: 'Oracle Cloud Infrastructure 2025 Certified Foundations Associate',
+    url: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=A9E230056D73A899A274B547E795BD927D6BE4E28423C61D29C6E481A2B0AB17',
+  },
+  {
+    label: 'Oracle Cloud Infrastructure 2025 Certified Architect Associate',
+    url: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=438C23082032BB0844DD53DD98AC5D64BBA663ED263F37330C571C4D73950659',
+  },
 ]
 
 function JobCard({ job, delay }) {
@@ -105,7 +114,7 @@ export default function Experience() {
           <p className="section-label">// WORK.HISTORY</p>
           <h2 className="section-heading">Experience</h2>
           <p className="section-sub">
-            Quests completed in the field — professional roles and responsibilities.
+            Quests completed in the field / professional roles and responsibilities.
           </p>
         </motion.div>
 
@@ -138,10 +147,16 @@ export default function Experience() {
           <p className="section-label" style={{ marginBottom: '1rem' }}>// CERTIFICATIONS</p>
           <div className="experience__cert-list">
             {CERTS.map((cert) => (
-              <div key={cert} className="experience__cert-item">
+              <a
+                key={cert.label}
+                href={cert.url}
+                target="_blank"
+                rel="noreferrer"
+                className="experience__cert-item experience__cert-item--link"
+              >
                 <span className="experience__cert-icon" style={{ color: 'var(--topaz)' }}>◆</span>
-                <span className="experience__cert-text">{cert}</span>
-              </div>
+                <span className="experience__cert-text">{cert.label}</span>
+              </a>
             ))}
           </div>
         </motion.div>
